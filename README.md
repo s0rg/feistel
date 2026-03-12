@@ -2,6 +2,8 @@
 
 This package implements [Feistel network (also known as Feistel cipher)](https://en.wikipedia.org/wiki/Feistel_cipher) for golang.
 
+TLDR: it takes bytes and hashes them to reversable form
+
 # example
 
 ```go
