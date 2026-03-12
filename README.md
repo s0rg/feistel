@@ -24,29 +24,22 @@ func main() {
 
 	a := uint64(12345)
 	b, _ := feistel.Uint64Hash(hash, nRounds, a)
-
 	fmt.Printf("\t%d -> %d\n", a, b)
 
 	hash.Reset()
 	c, _ := feistel.Uint64Hash(hash, nRounds, b)
-
 	fmt.Printf("\t%d -> %d\n", b, c)
 
 	fmt.Println("bytes:")
 
 	id, _ := uuid.NewV7()
-
 	id1, _ := feistel.BytesHash(hash, nRounds, id[:])
-
 	fmt.Printf("\t%v -> %v\n", id[:], id1)
 
 	hash.Reset()
 	id2, _ := feistel.BytesHash(hash, nRounds, id1)
-
 	fmt.Printf("\t%v -> %v\n", id1, id2)
-
 	fmt.Printf("\toriginal : %s\n", id.String())
-
 	fmt.Printf("\tresult   : %s\n", uuid.UUID(id2).String())
 }
 ```
