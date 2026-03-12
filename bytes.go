@@ -6,11 +6,7 @@ import (
 )
 
 // BytesHash runs balanced Feistel network for specified bytes slice.
-func BytesHash(
-	hasher hash.Hash,
-	rounds int,
-	data []byte,
-) (rv []byte, err error) {
+func BytesHash(hasher hash.Hash, rounds int, data []byte) (rv []byte, err error) {
 	if rounds < minCount {
 		return nil, fmt.Errorf("%w: got %d", ErrBadRoundsCount, rounds)
 	}
@@ -36,11 +32,7 @@ func BytesHash(
 }
 
 // BytesHashKeys runs balanced Feistel network for specified bytes slice with given set of keys.
-func BytesHashKeys(
-	hasher hash.Hash,
-	keys [][]byte,
-	data []byte,
-) (rv []byte, err error) {
+func BytesHashKeys(hasher hash.Hash, keys [][]byte, data []byte) (rv []byte, err error) {
 	if len(keys) < minCount {
 		return nil, fmt.Errorf("%w: got %d keys", ErrBadRoundsCount, len(keys))
 	}

@@ -12,11 +12,7 @@ const (
 
 // HashBlock runs balanced Feistel network for specified bytes block its size must be even and twice of hasher size.
 // Please note - this method damages provided data slice, use this if speed matters but original data content is not.
-func HashBlock(
-	hasher hash.Hash,
-	rounds int,
-	data []byte,
-) (rv []byte, err error) {
+func HashBlock(hasher hash.Hash, rounds int, data []byte) (rv []byte, err error) {
 	if rounds < minCount {
 		return nil, fmt.Errorf("%w: got %d", ErrBadRoundsCount, rounds)
 	}
@@ -36,11 +32,7 @@ func HashBlock(
 
 // HashKeys runs balanced Feistel network for specified bytes block with given set of keys. This method damages
 // provided data slice.
-func HashKeys(
-	hasher hash.Hash,
-	keys [][]byte,
-	data []byte,
-) (rv []byte, err error) {
+func HashKeys(hasher hash.Hash, keys [][]byte, data []byte) (rv []byte, err error) {
 	if len(keys) < minCount {
 		return nil, fmt.Errorf("%w: keys got only %d items", ErrBadRoundsCount, len(keys))
 	}

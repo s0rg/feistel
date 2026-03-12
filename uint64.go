@@ -7,11 +7,7 @@ import (
 )
 
 // Uint64Hash runs Feistel network for specified integer value.
-func Uint64Hash(
-	hasher hash.Hash,
-	rounds int,
-	value uint64,
-) (rv uint64, err error) {
+func Uint64Hash(hasher hash.Hash, rounds int, value uint64) (rv uint64, err error) {
 	var buf [8]byte
 
 	binary.LittleEndian.PutUint64(buf[:], value)
@@ -25,11 +21,7 @@ func Uint64Hash(
 }
 
 // Uint64HashKeys runs Feistel network for specified integer value and set of keys.
-func Uint64HashKeys(
-	hasher hash.Hash,
-	keys [][]byte,
-	value uint64,
-) (rv uint64, err error) {
+func Uint64HashKeys(hasher hash.Hash, keys [][]byte, value uint64) (rv uint64, err error) {
 	var buf [8]byte
 
 	binary.LittleEndian.PutUint64(buf[:], value)
