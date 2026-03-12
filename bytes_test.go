@@ -83,14 +83,12 @@ func Benchmark_BytesHash(b *testing.B) {
 	var (
 		src  = []byte("12345-test-string-to-hash!-67890")
 		hash = fnv.New32a()
-		/*
-			        keys = [][]byte{
-						{1, 1, 1, 1},
-						{2, 2, 2, 2},
-						{3, 3, 3, 3},
-						{4, 4, 4, 4},
-					}
-		*/
+		keys = [][]byte{
+			{1, 1, 1, 1},
+			{2, 2, 2, 2},
+			{3, 3, 3, 3},
+			{4, 4, 4, 4},
+		}
 	)
 
 	b.ResetTimer()
@@ -110,6 +108,24 @@ func Benchmark_BytesHash(b *testing.B) {
 	b.Run("BytesHash-8", func(b *testing.B) {
 		for range b.N {
 			_, _ = feistel.BytesHash(hash, 8, src)
+		}
+	})
+
+	b.Run("BytesHashKeys-1", func(b *testing.B) {
+		for range b.N {
+			_, _ = feistel.BytesHashKeys(hash, keys[:1], src)
+		}
+	})
+
+	b.Run("BytesHashKeys-2", func(b *testing.B) {
+		for range b.N {
+			_, _ = feistel.BytesHashKeys(hash, keys[:2], src)
+		}
+	})
+
+	b.Run("BytesHashKeys-4", func(b *testing.B) {
+		for range b.N {
+			_, _ = feistel.BytesHashKeys(hash, keys, src)
 		}
 	})
 }
