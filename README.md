@@ -7,9 +7,19 @@
 
 # feistel
 
-This package implements [Feistel network (also known as Feistel cipher)](https://en.wikipedia.org/wiki/Feistel_cipher) for golang.
+This package implements balanced variant of [Feistel network (also known as Feistel cipher)](https://en.wikipedia.org/wiki/Feistel_cipher) for golang.
 
-TLDR: it takes bytes and hashes them to reversable form
+TLDR: It takes bytes and hashes them to reversable form
+
+# features
+
+- small api based on standart data types and interfaces
+- additional `Block*` functions to use it as part of hashing or crypto lib
+- 100% test coverage
+
+# caveats
+
+- all incoming data slices **must** be rounded up to selected hash size
 
 # example
 
