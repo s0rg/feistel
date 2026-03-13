@@ -19,7 +19,7 @@ TLDR: It takes bytes and hashes them to reversable form
 
 # caveats
 
-- all incoming data slices **must** be rounded up to selected hash size
+- all incoming data slices sizes **must** be rounded up to selected hash size
 
 # example
 
