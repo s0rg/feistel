@@ -9,9 +9,10 @@ lint: vet
 	@- golangci-lint run
 
 test: vet
-	@- go test -race -count 1 -v -coverprofile="$(COP)" -cover ./... -coverpkg ./... -covermode=count
+	@- go test -race -count 1 -v -cover ./... -coverpkg ./...
 
-test-cover: test
+test-cover: vet
+	@- go test -v -coverprofile="$(COP)" -cover ./... -coverpkg ./... -covermode=count
 	@- go tool cover -func="$(COP)" -o="$(COP)"
 
 bench:
