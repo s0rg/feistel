@@ -1,5 +1,5 @@
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/s0rg/feistel)](https://pkg.go.dev/github.com/s0rg/feistel)
-![Coverage](https://img.shields.io/badge/Coverage-100.0%25-brightgreen)
+![coverage](https://img.shields.io/badge/coverage-100.0%25-brightgreen)
 [![License](https://img.shields.io/github/license/s0rg/feistel)](https://github.com/s0rg/feistel/blob/main/LICENSE)
 [![Go Version](https://img.shields.io/github/go-mod/go-version/s0rg/feistel)](go.mod)
 [![Tag](https://img.shields.io/github/v/tag/s0rg/feistel?sort=semver)](https://github.com/s0rg/feistel/tags)
