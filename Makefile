@@ -12,7 +12,7 @@ test: vet
 	@- go test -race -count 1 -v -coverprofile="$(COP)" ./...
 
 test-cover: test
-	@- go tool cover -func="$(COP)"
+	@- go tool cover -func="$(COP)" -o="$(COP)"
 
 bench:
 	@- go test -v -count 1 -bench=. -benchmem -timeout 15m
