@@ -1,0 +1,83 @@
+# ci workflow
+name: ci
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    environment:
+      name: ci
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: setup golang
+        uses: actions/setup-go@v5
+        with:
+          go-version: ^1.26
+          check-latest: true
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v7
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: setup golang
+        uses: actions/setup-go@v5
+        with:
+          go-version: ^1.26
+      - name: test cover
+        run: make test-cover
+      - name: coverage badge
+        uses: tj-actions/coverage-badge-go@v1
+        with:
+          green: 80
+          filename: cover.out
+      - name: apply bage
+        uses: stefanzweifel/git-auto-commit-action@v4
+        id: auto-commit-action
+        with:
+          commit_message: Apply Code Coverage Badge
+          skip_fetch: true
+          skip_checkout: true
+          file_pattern: ./README.md
+      - name: push changes
+        if: steps.auto-commit-action.outputs.changes_detected == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ github.token }}
+          branch: ${{ github.ref }}
+  codeql:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      name: ci
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: setup golang
+        uses: actions/setup-go@v5
+        with:
+          go-version: ^1.24
+          check-latest: true
+          cache: true
+      - name: init codeql
+        uses: github/codeql-action/init@v3
+        with:
+          languages: 'go'
+      - name: run analysis
+        uses: github/codeql-action/analyze@v3
+      - name: update goreportcard
+        uses: creekorful/goreportcard-action@v1.0

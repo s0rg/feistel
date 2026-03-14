@@ -20,6 +20,7 @@ TLDR: It takes bytes and hashes them to reversable form
 # caveats
 
 - all incoming data slices sizes **must** be rounded up to selected hash size
+- `Uint64*` methods work with 32 bit hashes only
 
 # example
 
