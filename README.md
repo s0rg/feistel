@@ -4,7 +4,7 @@
 [![Go Version](https://img.shields.io/github/go-mod/go-version/s0rg/feistel)](go.mod)
 [![Tag](https://img.shields.io/github/v/tag/s0rg/feistel?sort=semver)](https://github.com/s0rg/feistel/tags)
 [![Go Report Card](https://goreportcard.com/badge/github.com/s0rg/feistel)](https://goreportcard.com/report/github.com/s0rg/feistel)
-![Issues](https://img.shields.io/github/issues/s0rg/feistel)
+[![Issues](https://img.shields.io/github/issues/s0rg/feistel)](https://github.com/s0rg/feistel/issues)
 
 # feistel
 
