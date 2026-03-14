@@ -16,10 +16,12 @@ TLDR: It takes bytes and hashes them to reversable form
 
 - small api based on standart data types and interfaces
 - additional `Block*` functions to use it as part of hashing or crypto lib
+- uses only stdlib, zero-dependency
 - 100% test coverage
 
 # caveats
 
+- this is **NOT** a cryptography it can mask data, **not encrypt**
 - all incoming data slices sizes **must** be rounded up to selected hash size
 - `Uint64*` methods work with 32 bit hashes only
 
