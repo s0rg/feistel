@@ -32,12 +32,14 @@ jobs:
         uses: golangci/golangci-lint-action@v7
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: checkout
         uses: actions/checkout@v4
         with:
-          persist-credentials: false
-          fetch-depth: 0
+          persist-credentials: true
+          ref: ${{ github.head_ref }}
       - name: setup golang
         uses: actions/setup-go@v5
         with:
@@ -50,7 +52,7 @@ jobs:
           green: 80
           filename: cover.out
       - name: apply bage
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v7
         id: auto-commit-action
         with:
           commit_message: Apply Code Coverage Badge
